@@ -1,24 +1,24 @@
 #include <IRremote.h>
-const int iLedPin=2;
-int iLedEtat=LOW;
+const int pinLED=2;
+int etatLED=LOW;
 
-const char cRECV_PIN=11;
-IRrecv monRecepteurIR(cRECV_PIN);
+const char RECV_PIN=11;
+IRrecv mIR(RECV_PIN);
 decode_results sMsg;
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  monRecepteurIR.enableIRIn();
+  mIR.enableIRIn();
   
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  if (monRecepteurIR.decode(&sMsg))
+  
+  if (mIR.decode(&sMsg))
   {
     Serial.println(sMsg.value,HEX);
     delay(500);
-    monRecepteurIR.resume();
+    mIR.resume();
     }
 }
